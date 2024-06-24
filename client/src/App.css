@@ -1,0 +1,26 @@
+#root {
+  max-width: 1280px;
+  text-align: center;
+  background-color: rgb(204, 204, 217);
+  min-width: 98vw;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) and (max-width: 1024px) {
+  #root {
+    background-color: lightgreen;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+  #root {
+    background-color: lightblue;
+  }
+}
