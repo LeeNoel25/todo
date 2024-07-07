@@ -1,7 +1,7 @@
 import express from 'express';
-import todoController from '../controllers/todo.ts';
+import todoController from '../controllers/todoController.ts';
 import todoSchema from '../schema/todoSchema.ts';
-import validate from '../schema/validate';
+import validate from '../schema/validate.ts';
 
 const router = express.Router();
 
@@ -11,7 +11,3 @@ router
   .delete('/:id', todoController.delete);
 
 export default router;
-
-// todoSchema: This runs first when a request comes in, applying all the validation rules to the description field.
-// validate: This runs next, checking if any of the validation rules in validateTodo failed.If any rule failed,
-// it sends a response with the errors.If all rules passed, it moves on to the controller.

@@ -1,14 +1,22 @@
-import { NextFunction, Request, Response } from "express";
-import { validationResult } from "express-validator";
+import { NextFunction, Request, Response } from 'express';
+import { validationResult } from 'express-validator';
+import logError from '../utils/Logger';
 
 function validate(req: Request, res: Response, next: NextFunction) {
-  // Get the validation results
   const errors = validationResult(req);
-  // If there are errors, send a response with the errors
+
   if (!errors.isEmpty()) {
+    const errorMessages = errors
+      .array()
+      .map(err => err.msg)
+      .join(', ');
+    const error = new Error(errorMessages);
+
+    // Log the validation error
+    logError(req, error, 400);
     return res.status(400).json({ errors: errors.array() });
   }
-  // If no errors, move on to the controller
+
   next();
 }
 
