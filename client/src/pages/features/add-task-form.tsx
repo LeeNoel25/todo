@@ -4,7 +4,7 @@ import { useTasks } from '../../utilities/context/useTask';
 import { Button, TextField, Box } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { useState } from 'react';
-import isValidText from '../../utilities/validation/isValidText';
+// import isValidText from '../../utilities/validation/isValidText';
 
 const AddTaskForm = () => {
   const { enqueueSnackbar } = useSnackbar();
@@ -17,17 +17,19 @@ const AddTaskForm = () => {
   };
 
   const handleClick = async () => {
-    if (!isValidText(newTask.description)) {
-      enqueueSnackbar('Only alphanumeric characters allowed', {
-        variant: 'error',
-      });
-      return;
-    }
+    // if (!isValidText(newTask.description)) {
+    //   enqueueSnackbar('Only alphanumeric characters allowed', {
+    //     variant: 'error',
+    //   });
+    //   return;
+    // }
     try {
-      const addedTask = await postRequest('http://localhost:3000/api/tasks', {
-        // URL to be hidden by the proxy API_URL
-        description: newTask.description,
-      });
+      const addedTask = await postRequest(
+        'http://localhost:3000/api/v1/tasks',
+        {
+          description: newTask.description,
+        }
+      );
       setNewTask({ id: '', description: '' });
       setAllTasks([...allTasks, addedTask]);
       enqueueSnackbar('Task added successfully!', { variant: 'success' });

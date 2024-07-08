@@ -14,7 +14,7 @@ const DeleteTask: React.FC<DeleteTaskProps> = ({ task }) => {
 
   const handleClick = async () => {
     try {
-      await deleteRequest(`http://localhost:3000/api/tasks/${task.id}`); // URL to be hidden by the proxy API_URL
+      await deleteRequest(`http://localhost:3000/api/v1/tasks/${task.id}`);
       enqueueSnackbar('Task completed!', { variant: 'info' });
       refreshTasksList();
     } catch (error) {

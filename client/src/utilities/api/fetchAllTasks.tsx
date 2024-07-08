@@ -4,7 +4,7 @@ import { Task } from '../../types/Interface';
 export default async function fetchAllTasks(): Promise<Task[]> {
   try {
     const response = await axios.get<Task[]>(
-      'http://localhost:3000/api/tasks', // URL to be hidden by the proxy API_URL
+      'http://localhost:3000/api/v1/tasks',
       {
         timeout: 10000,
       }
